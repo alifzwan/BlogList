@@ -36,20 +36,20 @@ const blog = new Blog({
     likes: likes
 })
 
-Blog.find({}).then(result => {
-    if(result.length > 0){
-        result.forEach(blog => {
-            console.log(blog)
-        })
-    } else {
-        console.log('No blogs found')
-    }
-    mongoose.connection.close()
-})
-
-// blog.save().then(result => {
-//     console.log(`Blog saved: ${result}`)
+// Blog.find({}).then(result => {
+//     if(result.length > 0){
+//         result.forEach(blog => {
+//             console.log(blog)
+//         })
+//     } else {
+//         console.log('No blogs found')
+//     }
 //     mongoose.connection.close()
 // })
+
+blog.save().then(result => {
+    console.log(`Blog saved: ${result}`)
+    mongoose.connection.close()
+})
 
 
