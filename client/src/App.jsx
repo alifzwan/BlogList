@@ -7,6 +7,7 @@ import Notification from './components/Notification'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
+  const [loading, setLoading] = useState(true) // Add loading state
 
   const [newTitle, setNewTitle] = useState('')
   const [newAuthor, setNewAuthor] = useState('')
@@ -36,6 +37,7 @@ const App = () => {
       .getAll()
       .then(initialBlogs => {
         setBlogs(initialBlogs)
+        setLoading(false) // Set loading to false after blogs are fetched
       })
   }, [])
 
@@ -51,10 +53,13 @@ const App = () => {
         setBlogs(blogs.concat(returnedBlog))
         showMessage(`Added ${newTitle} by ${newAuthor}`)
       })
-    setNewAuthor()
-    setNewTitle()
-    setNewUrl()
-    setNewLikes()
+      .catch(error => {
+        showError(error.response.data.error)
+      })
+    setNewAuthor('')
+    setNewTitle('')
+    setNewUrl('')
+    setNewLikes('')
   }
 
   const deleteBlog = (id) => {
@@ -100,6 +105,7 @@ const App = () => {
       <h2>Add new blog</h2>
       <BlogForm 
         onSubmit={addBlog} 
+        
         titleValue={newTitle}
         authorValue={newAuthor}
         urlValue={newUrl}
@@ -112,7 +118,11 @@ const App = () => {
       />
 
       <h2>Blogs</h2>
-      <Blog blogs={blogs} onClick={deleteBlog}/>
+      {loading ? ( 
+        <p>Loading blogs...</p>
+      ) : (
+        <Blog blogs={blogs} onClick={deleteBlog}/>
+      )}
     </div>
   )
 }
