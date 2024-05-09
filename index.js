@@ -31,7 +31,6 @@ app.get('/', (request, response) => {
 app.get('/api/blogs', (request, response) => {
     Blog.find({}).then(blogs => {
         response.json(blogs)
-        console.log(blogs)
     })
 })
 
@@ -57,44 +56,31 @@ app.delete('/api/blogs/:id', (request, response, next) => {
         .catch(error => next(error))
 })
 
-// PUT
-app.put('/api/blogs/:id', (request, response, next) => {
-    const { title, author, url, likes } = request.body
-
-    Blog.findByIdAndUpdate(
-        request.params.id, 
-        { title, author, url, likes }, 
-        { new: true, runValidators: true, context: 'query' }
-    )
-        .then(updatedBlog => {
-            response.json(updatedBlog)
-        })
-        .catch(error => next(error))
-})
-
 
 // POST
 app.post('/api/blogs', (request, response, next) => {
     const body = request.body
   
-    if (body.content === undefined) {
+    if (body.title === undefined) {
       return response.status(400).json({ 
-        error: 'content missing' 
+        error: 'title missing' 
       })
     }
-  
+
     const blog = new Blog({
-      title : body.title,
-      author: body.author,
-      url   : body.url,
-      likes : body.likes
+        title: body.title,
+        author: body.author,
+        url: body.url,
+        likes: body.likes
     })
-  
+    
     blog.save()
-        .then(savedblog => {
-            response.json(savedblog)
+        .then(savedBlog => {
+            response.json(savedBlog)
         })
         .catch(error => next(error))
+        
+    
 })
 
 
@@ -132,7 +118,7 @@ app.use(errorHandler) // The errorHandler middleware is used to catch errors in 
 
 
 
-const PORT = process.env.PORT || 3001
+const PORT =  3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
