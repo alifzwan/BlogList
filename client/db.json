@@ -1,0 +1,18 @@
+{
+    "blogs": [
+      {
+        "title": "French Riviera ",
+        "author": "Mollie",
+        "url": "https://molliemooreblog.com/2018/08/french-riviera-travel-guide.html",
+        "likes": 99,
+        "id": "f3e5"
+      },
+      {
+        "id": "b332",
+        "title": "Thailand",
+        "author": "Alif Zakwan",
+        "url": "https://thailandstartshere.com/thailand-travel-blog/",
+        "likes": "123"
+      }
+    ]
+  }
