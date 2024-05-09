@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BlogForm = ({onSubmit, titleValue, authorValue, urlValue, likeValue, titleChange, authorChange, urlChange, likeChange}) => {
+const BlogForm = ({ onSubmit, titleValue, authorValue, urlValue, likeValue, titleChange, authorChange, urlChange, likeChange }) => {
   return (
     <div>
         <form onSubmit={onSubmit}>
@@ -16,8 +16,10 @@ const BlogForm = ({onSubmit, titleValue, authorValue, urlValue, likeValue, title
             <div>
                 Likes: <input value={likeValue} onChange={likeChange} />
             </div>
-            <button type="submit">Create</button>
-      </form>
+            <div>
+              <button type="submit">Create</button>
+            </div>
+        </form>
     </div>
   )
 }
