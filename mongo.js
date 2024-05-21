@@ -47,9 +47,9 @@ const blog = new Blog({
 //     mongoose.connection.close()
 // })
 
-blog.save().then(result => {
-    console.log(`Blog saved: ${result}`)
-    mongoose.connection.close()
-})
+// blog.save().then(result => {
+//     console.log(`Blog saved: ${result}`)
+//     mongoose.connection.close()
+// })
 
 
