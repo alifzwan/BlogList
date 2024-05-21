@@ -72,6 +72,7 @@ const App = () => {
           .remove(id)
           .then(response => {
             setBlogs(blogs.filter(blog => blog.id !== id))
+            showMessage(`removed ${newTitle} by ${newAuthor}`)
           })
       }
     }
